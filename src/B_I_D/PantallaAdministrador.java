@@ -420,7 +420,7 @@ i-=1;
          
                   buscarAlumnoEnTabla(matricula);
               }else{
-                   JOptionPane.showMessageDialog(null, "El alumno con la matricula " + matricula + "no ha utilizado casillero");
+                   JOptionPane.showMessageDialog(null, "El alumno con la matricula " + matricula + " no ha utilizado casillero");
               }
         } catch (SQLException ex) {
             Logger.getLogger(PantallaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
