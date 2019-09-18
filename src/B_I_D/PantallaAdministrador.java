@@ -498,6 +498,12 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BotonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonFiltrarActionPerformed
+        //Se manda llamar al metodo para cargar los filtros en la tabla de registro
+        CargarFiltros();        
+    }//GEN-LAST:event_BotonFiltrarActionPerformed
+
+    //Metodo para gargar los filtros en la tabla de registro
+    private void CargarFiltros(){
         PreparedStatement st = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -511,9 +517,6 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                 st = conn.prepareStatement(
                     "SELECT No_Control, Nombre, Carrera, Fecha, Entrada_Salida, CasilleroID FROM Registros "+ConsultaFiltro(Carrera,E_S)
                             +"Order By Fecha desc"
-                
-                        //Where Carrera='"+Carrera+"'"
-                        //+"AND Entrada_Salida='"+E_S+"' ORDER BY Fecha "
                 );
                 rs = st.executeQuery();
                 while (rs.next()) {
@@ -530,9 +533,9 @@ public class PantallaAdministrador extends javax.swing.JFrame {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "No se encuentra Carrera");
             }     
-        
-    }//GEN-LAST:event_BotonFiltrarActionPerformed
-
+    }
+    
+    //Metodo para filtrar con las variables del combobox
     private String ConsultaFiltro(String Carrera, String E_S){
         String Consulta="";
         if("Todas".equals(Carrera) && "Todas".equals(E_S)){
@@ -547,8 +550,6 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     }else if(!"Todas".equals(Carrera) && !"Todas".equals(E_S)){
         Consulta="Where Carrera = '"+ Carrera +"' AND Entrada_Salida ='"+E_S+"'";
     }
-        
-        
         return  Consulta ;
     }
     
