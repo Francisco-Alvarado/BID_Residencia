@@ -516,7 +516,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                 conn = (objeto.usercon != null) ? objeto.usercon : Conexion.getConexion();
                 st = conn.prepareStatement(
                     "SELECT No_Control, Nombre, Carrera, Fecha, Entrada_Salida, CasilleroID FROM Registros "+ConsultaFiltro(Carrera,E_S)
-                            +"Order By Fecha desc"
+                    +"Order By Fecha desc"
                 );
                 rs = st.executeQuery();
                 while (rs.next()) {
@@ -538,18 +538,27 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     //Metodo para filtrar con las variables del combobox
     private String ConsultaFiltro(String Carrera, String E_S){
         String Consulta="";
+        
+        //Caso en el combo este en todas
         if("Todas".equals(Carrera) && "Todas".equals(E_S)){
             Consulta="";
             
+        //Caso en el que el combo carrera este en todas y 
+        //el combo de entrada_salida este diferente de todas
         } else if("Todas".equals(Carrera) && !"Todas".equals(E_S)){
         Consulta="Where Entrada_Salida ='"+E_S+"'";
         
-    }else if(!"Todas".equals(Carrera) && "Todas".equals(E_S)){
+        //Caso en el que el combo Entrada_Salida este en todas y 
+        //el combo de carrera este diferente de todas
+        }else if(!"Todas".equals(Carrera) && "Todas".equals(E_S)){
         Consulta="Where Carrera = '"+ Carrera +"'";
         
-    }else if(!"Todas".equals(Carrera) && !"Todas".equals(E_S)){
+        //En el caso de que los 2 combos esten diferente de todas
+        }else if(!"Todas".equals(Carrera) && !"Todas".equals(E_S)){
         Consulta="Where Carrera = '"+ Carrera +"' AND Entrada_Salida ='"+E_S+"'";
     }
+        //Se regresa la variable Consulta con los parametros para
+        //la consulta en sql
         return  Consulta ;
     }
     
