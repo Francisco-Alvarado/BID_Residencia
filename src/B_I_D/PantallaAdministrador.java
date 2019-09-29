@@ -18,6 +18,11 @@ import javax.swing.table.DefaultTableModel;
 
 //paginación
 
+
+
+
+
+
 public class PantallaAdministrador extends javax.swing.JFrame {
     PlaceHolder holder;
            
@@ -383,7 +388,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelImage3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelImage3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 21, Short.MAX_VALUE)
                         .addComponent(clockDigital1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelImage3Layout.createSequentialGroup()
                         .addComponent(Boton_Reporte)
@@ -396,17 +401,11 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelImage3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panelImage3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelImage3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(40, 40, 40))
+            .addComponent(panelImage3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(739, 632));
@@ -414,8 +413,11 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
+    
 //Para traer los datos del combo
-//String estatus = comboEstatus.getSelectedItem().toString();  
+//String estatus = comboEstatus.getSelectedItem().toString();
+    
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
        getCombo_Carreras(Combo_CveCarrera);
@@ -513,7 +515,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
             try {
                 conn = (objeto.usercon != null) ? objeto.usercon : Conexion.getConexion();
                 st = conn.prepareStatement(
-                    "SELECT No_Control, Nombre, Carrera, Fecha, Entrada_Salida, CasilleroID FROM Registros "+ ConsultaFiltro(Carrera,E_S)
+                    "SELECT No_Control, Nombre, Carrera, Fecha, Entrada_Salida, CasilleroID FROM Registros "+ConsultaFiltro(Carrera,E_S)
                     +"Order By Fecha desc"
                 );
                 rs = st.executeQuery();
@@ -576,7 +578,9 @@ public class PantallaAdministrador extends javax.swing.JFrame {
             System.out.printf("Error al obtener las Claves de las carreras para ingresarlos al combo SQL");
         } 
     }
-         
+        
+    
+    
     
     /**
      * @param args the command line arguments
@@ -636,7 +640,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private org.edisoncor.gui.panel.PanelImage panelImage1;
     private org.edisoncor.gui.panel.PanelImage panelImage3;
     private org.edisoncor.gui.panel.PanelShadow panelShadow1;
-    public javax.swing.JTable tablaRegistro;
+    private javax.swing.JTable tablaRegistro;
     private javax.swing.JTextField txt_Ncontrol;
     // End of variables declaration//GEN-END:variables
 
@@ -648,6 +652,9 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     
      
     DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer(); 
+    
+    
+    
   
       public void actualizarTabla() throws  SQLException{
          PreparedStatement st = null;
